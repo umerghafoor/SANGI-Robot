@@ -2,7 +2,7 @@ from GPT.gpt import GPTModule
 from STT.speech_recognizer import SpeechRecognizer
 from TTS.TTS import TextToSpeech
 
-API_KEY = "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"  # Replace with your API key
+API_KEY = "API_KEY"  # Replace with your API key
 
 def main():
     # Initialize
