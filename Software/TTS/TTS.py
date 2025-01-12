@@ -1,32 +1,54 @@
 import pyttsx3
 
-# Initialize 
-engine = pyttsx3.init()
+class TextToSpeech:
+    def __init__(self, rate=150, volume=1, voice_type=0):
+        """
+        Initializes the TextToSpeech engine with the given configurations.
+        :param rate: Rate of speech (default is 150 words per minute)
+        :param volume: Volume of speech (default is 1, range is 0.0 to 1.0)
+        :param voice_type: Type of voice (0 for Male, 1 for Female)
+        """
+        self.engine = pyttsx3.init()
+        self.configure(rate, volume, voice_type)
 
-def configuration(rate, volume, voice_type):
-    """"
-    rate = The rate of speech
-    volume = The volume of speech
-    voice = 0/1 for Male/Female
+    def configure(self, rate, volume, voice_type):
+        """
+        Configures the speech engine with the given rate, volume, and voice type.
+        :param rate: Rate of speech (words per minute)
+        :param volume: Volume of speech (range 0.0 to 1.0)
+        :param voice_type: Type of voice (0 for Male, 1 for Female)
+        """
+        self.engine.setProperty('rate', rate)
+        self.engine.setProperty('volume', volume)
+        voices = self.engine.getProperty('voices')
+        self.engine.setProperty('voice', voices[voice_type].id)
 
-    """
-    engine.setProperty('rate', rate)
-    engine.setProperty('volume', volume)
-    voices = engine.getProperty('voices')
-    engine.setProperty('voice', voices[voice_type].id)
+    def speak(self, text):
+        """
+        Speaks the given text out loud.
+        :param text: The text to convert to speech
+        """
+        self.engine.say(text)
+        self.engine.runAndWait()
 
-def speak(text):
-    engine.say(text)
-    engine.runAndWait()
+    def set_rate(self, rate):
+        """
+        Sets the speech rate.
+        :param rate: Rate of speech (words per minute)
+        """
+        self.engine.setProperty('rate', rate)
 
-if 'name' == '__main__':
-    #call from main
-    while(1):
-        # Input
-        answer = input("Enter the input you want to convert to speech: ")
+    def set_volume(self, volume):
+        """
+        Sets the speech volume.
+        :param volume: Volume of speech (range 0.0 to 1.0)
+        """
+        self.engine.setProperty('volume', volume)
 
-        # Configuration    
-        configuration(100, 1, 0)
-
-        # Output
-        speak(answer)
+    def set_voice(self, voice_type):
+        """
+        Sets the voice type.
+        :param voice_type: Type of voice (0 for Male, 1 for Female)
+        """
+        voices = self.engine.getProperty('voices')
+        self.engine.setProperty('voice', voices[voice_type].id)
