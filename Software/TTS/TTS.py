@@ -19,12 +19,14 @@ def speak(text):
     engine.say(text)
     engine.runAndWait()
 
-while(1):
-    # Input
-    answer = input("Enter the input you want to convert to speech: ")
+if 'name' == '__main__':
+    #call from main
+    while(1):
+        # Input
+        answer = input("Enter the input you want to convert to speech: ")
 
-    # Configuration    
-    configuration(100, 1, 0)
+        # Configuration    
+        configuration(100, 1, 0)
 
-    # Output
-    speak(answer)
+        # Output
+        speak(answer)
