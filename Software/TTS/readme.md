@@ -14,7 +14,7 @@ This script converts text input into speech using the `pyttsx3` library.
 
 2. Run the script:
     ```sh
-    python STT.py
+    python TTS.py
     ```
 
 3. Enter the text you want to convert to speech when prompted.
